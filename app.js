@@ -1,5 +1,32 @@
-const contractAddress = 'YOUR_CONTRACT_ADDRESS';
-const contractABI = YOUR_CONTRACT_ABI;
+const contractAddress = '0xDA0bab807633f07f013f94DD0E6A4F96F8742B53';
+const contractABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "data",
+				"type": "string"
+			}
+		],
+		"name": "set",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "get",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
 
 const contract = new web3.eth.Contract(contractABI, contractAddress);
 
