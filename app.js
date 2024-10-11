@@ -1,3 +1,8 @@
+const contractAddress = 'YOUR_CONTRACT_ADDRESS';
+const contractABI = YOUR_CONTRACT_ABI;
+
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+
 window.addEventListener('load', async () => {
     if (typeof window.ethereum !== 'undefined') {
         document.getElementById('status').textContent = "Metamask is installed!";
@@ -16,4 +21,17 @@ window.addEventListener('load', async () => {
     } else {
         document.getElementById('status').textContent = "Metamask is not installed.";
     }
+});
+
+
+
+document.getElementById('setButton').addEventListener('click', async () => {
+    const accounts = await web3.eth.getAccounts();
+    await contract.methods.set("Hello World").send({ from: accounts[0] });
+    document.getElementById('status').textContent = "Data stored in contract!";
+});
+
+document.getElementById('getButton').addEventListener('click', async () => {
+    const result = await contract.methods.get().call();
+    document.getElementById('status').textContent = "Stored data: " + result;
 });
